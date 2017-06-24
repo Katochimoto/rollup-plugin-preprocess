@@ -21,6 +21,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "acorn": "^5.0.3",
+    "estree-walker": "^0.4.0",
+    "magic-string": "^0.21.3",
     "preprocess": "^3.1.0",
     "rollup-pluginutils": "^2.0.1"
   },
