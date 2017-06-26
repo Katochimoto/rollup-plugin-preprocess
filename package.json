@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-preprocess",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Preprocess HTML, JavaScript, and other files with Rollup and Preprocess",
   "keywords": [
     "rollup",
