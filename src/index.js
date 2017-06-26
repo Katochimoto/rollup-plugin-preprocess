@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import pp from 'preprocess';
 import { createFilter } from 'rollup-pluginutils';
@@ -22,27 +23,25 @@ export default function RollupPluginPreprocess ({
     name: 'preprocess',
 
     /**
-     * @param {string} code
      * @param {string} fileName
-     * @returns {{ code: string, map: Object }}
+     * @returns {string}
      */
-    transform (code, fileName) {
-      if (!filter(fileName)) {
-        return;
-      }
+    load (fileName) {
+      let data = fs.readFileSync(fileName);
 
-      if (!options.type) {
-        const ext = path.extname(fileName);
+      if (filter(fileName)) {
+        if (!options.type) {
+          const ext = path.extname(fileName);
 
-        if (ext) {
-          options.type = ext.substr(1);
+          if (ext) {
+            options.type = ext.substr(1);
+          }
         }
+
+        data = pp.preprocess(data, context, options);
       }
 
-      return {
-        code: pp.preprocess(code, context, options),
-        map: { mappings: '' }
-      };
+      return data;
     }
   };
 };
