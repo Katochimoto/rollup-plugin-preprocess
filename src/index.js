@@ -27,7 +27,7 @@ export default function RollupPluginPreprocess ({
      * @returns {string}
      */
     load (fileName) {
-      let data = fs.readFileSync(fileName);
+      let data = fs.readFileSync(fileName, 'utf8');
 
       if (filter(fileName)) {
         if (!options.type) {
