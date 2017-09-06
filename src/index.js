@@ -24,12 +24,11 @@ export default function RollupPluginPreprocess ({
 
     /**
      * @param {string} fileName
-     * @returns {string}
+     * @returns {(string|undefined)}
      */
     load (fileName) {
-      let data = fs.readFileSync(fileName, 'utf8');
-
       if (filter(fileName)) {
+        const data = fs.readFileSync(fileName, 'utf8');
         if (!options.type) {
           const ext = path.extname(fileName);
 
@@ -38,10 +37,8 @@ export default function RollupPluginPreprocess ({
           }
         }
 
-        data = pp.preprocess(data, context, options);
+        return pp.preprocess(data, context, options);
       }
-
-      return data;
     }
   };
 };
